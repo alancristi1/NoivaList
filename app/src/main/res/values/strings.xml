@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">NoivaList</string>
+    <string name="action_settings">Settings</string>
+    <string name="nome">Nome:</string>
+    <string name="adicione_a_sua_tarefa">Adicione a sua tarefa</string>
+    <string name="salvar">Salvar</string>
+    <string name="tarefa">Tarefa</string>
+    <string name="deletar">Deletar</string>
+    <string name="alterar">Alterar</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="AcessoBD_onCreate">CREATE TABLE task (ID INTEGER PRIMARY KEY AUTOINCREMENT, Nome TEXT);</string>
+    <string name="AcessoBD_onUpgrade">"DROP TABLE IF EXISTS task</string>
+</resources>
