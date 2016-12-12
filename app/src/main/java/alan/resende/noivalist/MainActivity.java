@@ -24,13 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //final BancoController controller = new BancoController(this);
-        //final ArrayList<Task> itens;
-        //itens = controller.getAllItens();
-        //System.out.println(itens);
-        //final ArrayAdapter<Task> adapter = new ArrayAdapter<Task>(this, simple_list_item_1, itens);
         final ListView listview = (ListView) findViewById(R.id.lista);
-        //listview.setAdapter((ListAdapter) adapter);
 
         ArrayList<Task> itens = null;
         BancoController controller = new BancoController(this);

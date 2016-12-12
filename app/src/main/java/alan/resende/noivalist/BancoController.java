@@ -18,17 +18,6 @@ public class BancoController {
 
     private Context ctx;
 
-//    public static AcessoBD acessoBD = null;
-//    public BancoController(MainActivity context){
-//        if(acessoBD == null){
-//            acessoBD = new AcessoBD((Context) context);
-//        }
-//    }
-
-//    public BancoController(Context ctx) {
-//        this.ctx = ctx;
-//    }
-
     public BancoController(AdapterView.OnItemLongClickListener onItemLongClickListener) {
     }
 
