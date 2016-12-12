@@ -1,5 +1,6 @@
 package alan.resende.noivalist;
 
+<<<<<<< HEAD
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,16 +15,31 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+=======
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+>>>>>>> c34bcb1935cbf087c7fbf5011191fde511e96294
 import java.util.ArrayList;
 import static android.R.layout.simple_list_item_1;
 
 public class MainActivity extends AppCompatActivity {
+<<<<<<< HEAD
     //BancoController controller = new BancoController(this);
+=======
+
+>>>>>>> c34bcb1935cbf087c7fbf5011191fde511e96294
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+<<<<<<< HEAD
         final BancoController controller = new BancoController(this);
         final ArrayList<Task> itens;
         itens = controller.getAllItens();
@@ -32,6 +48,20 @@ public class MainActivity extends AppCompatActivity {
         final ListView listview = (ListView) findViewById(R.id.lista);
         listview.setAdapter((ListAdapter) adapter);
 
+=======
+        ArrayList<String> itens = null;
+        BancoController controller = new BancoController(this);
+
+//        for (int i = 10; i < 20; i++) {
+//            controller.addItem("" + i);
+
+            itens = controller.getAllItens();
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, simple_list_item_1, itens);
+            ListView listview = (ListView) findViewById(R.id.lista);
+            listview.setAdapter((ListAdapter) adapter);
+        onRestart();
+//        }
+>>>>>>> c34bcb1935cbf087c7fbf5011191fde511e96294
         //Instância do floatbutton
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+<<<<<<< HEAD
 
         //final ArrayList<String> finalItens = itens;
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -80,5 +111,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart(){
         super.onRestart();
         LoadList();
+=======
+>>>>>>> c34bcb1935cbf087c7fbf5011191fde511e96294
     }
 }
