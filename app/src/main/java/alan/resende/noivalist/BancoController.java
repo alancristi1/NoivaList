@@ -4,15 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-<<<<<<< HEAD
 import android.widget.AdapterView;
-
 import java.util.ArrayList;
 import java.util.List;
-=======
-
 import java.util.ArrayList;
->>>>>>> c34bcb1935cbf087c7fbf5011191fde511e96294
+
 
 /**
  * Created by alan on 28/10/16.
@@ -20,37 +16,34 @@ import java.util.ArrayList;
 
 public class BancoController {
 
-<<<<<<< HEAD
     private Context ctx;
 
-    public static AcessoBD acessoBD = null;
-    public BancoController(MainActivity context){
-        if(acessoBD == null){
-            acessoBD = new AcessoBD((Context) context);
-        }
-    }
+//    public static AcessoBD acessoBD = null;
+//    public BancoController(MainActivity context){
+//        if(acessoBD == null){
+//            acessoBD = new AcessoBD((Context) context);
+//        }
+//    }
 
-    public BancoController(Context ctx) {
-        this.ctx = ctx;
-    }
+//    public BancoController(Context ctx) {
+//        this.ctx = ctx;
+//    }
 
     public BancoController(AdapterView.OnItemLongClickListener onItemLongClickListener) {
     }
 
-=======
     public static AcessoBD acessoBD = null;
+
     public BancoController(Context context){
         if(acessoBD == null){
             acessoBD = new AcessoBD(context);
         }
     }
 
->>>>>>> c34bcb1935cbf087c7fbf5011191fde511e96294
     public void addItem(String nome){
         String sql = "INSERT INTO task (nome) VALUES ('"+nome+"')";
         SQLiteDatabase db = acessoBD.getWritableDatabase();
         ContentValues values = new ContentValues();
-<<<<<<< HEAD
         values.put("", nome);
         db.insert("task ", null, values);
         db.execSQL(sql);
@@ -91,28 +84,4 @@ public class BancoController {
         db.close();
         return tasks;
     }
-
-=======
-        values.put("nome", nome);
-        db.insert("task ", null, values);
-        db.execSQL(sql);
-    }
-
-    public ArrayList<String> getAllItens(){
-        SQLiteDatabase db = acessoBD.getReadableDatabase();
-        String sql = "SELECT nome FROM task";
-        Cursor cursor;
-        ArrayList<String> itens = null;
-
-        cursor = db.rawQuery(sql, null);
-        if(cursor != null && cursor.moveToFirst()){
-            itens = new ArrayList<String>();
-
-            do {
-                itens.add(cursor.getString(0));
-            }while (cursor.moveToNext());
-        }
-        return itens;
-    }
->>>>>>> c34bcb1935cbf087c7fbf5011191fde511e96294
 }

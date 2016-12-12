@@ -24,11 +24,7 @@ public class TaskActivity extends AppCompatActivity {
                 inputTask = (EditText)findViewById(R.id.inputTask);
                 BancoController controller = new BancoController(getBaseContext());
                 System.out.println(inputTask);
-<<<<<<< HEAD
                 controller.addItem(inputTask.getText().toString());
-=======
-                controller.addItem(inputTask.toString());
->>>>>>> c34bcb1935cbf087c7fbf5011191fde511e96294
                 finish();
             }
         });
