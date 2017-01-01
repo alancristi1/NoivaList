@@ -3,6 +3,7 @@
     package="alan.resende.noivalist">
 
     <application
+        android:label="@string/app_name"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
