@@ -2,8 +2,10 @@ package alan.resende.noivalist;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.view.View;
 import android.widget.AdapterView;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,21 +32,16 @@ public class BancoController {
     }
 
     public void addItem(String nome){
-        String sql = "INSERT INTO task (nome) VALUES ('"+nome+"')";
         SQLiteDatabase db = acessoBD.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("", nome);
+        values.put("nome", nome);
         db.insert("task ", null, values);
-        db.execSQL(sql);
         db.close();
     }
 
-    public void deleteItem(int id){
+    public int deleteItem(String id){
         SQLiteDatabase db = acessoBD.getWritableDatabase();
-        //String sql = "DELETE FROM task WHERE id = ('"+position+"')";
-        String sql = "DELETE FROM task WHERE id=" + id;
-        db.execSQL(sql);
-        db.close();
+        return db.delete("task", "ID=?", new String[] {id});
     }
 
     public ArrayList<Task> getAllItens(){
@@ -57,7 +54,6 @@ public class BancoController {
 
         ArrayList<Task> tasks = new ArrayList<>();
         Cursor cursor;
-        //ArrayList<String> itens = null;
 
         cursor = db.rawQuery(sql, null);
         if(cursor != null && cursor.moveToFirst()){
@@ -72,5 +68,12 @@ public class BancoController {
         }
         db.close();
         return tasks;
+    }
+
+    public void alterItem(String nome, int id){
+        SQLiteDatabase db = acessoBD.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("", nome);
+        //  db.update("task",  values, nome, );
     }
 }

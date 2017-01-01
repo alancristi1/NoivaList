@@ -45,9 +45,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Context ctx = view.getContext();
+                Task task = (Task)listView.getItemAtPosition(position);
+                new BancoController(getBaseContext()).alterItem("", task.id);
+                LoadList();
+                Toast.makeText(ctx, "Tarefa alterada com sucesso", Toast.LENGTH_LONG).show();
+            }
+        });
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, final long id) {
                 final Context ctx = view.getContext();
                 final Task task = (Task)listview.getItemAtPosition(position);
 
@@ -57,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         .setPositiveButton("Excluir", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                new BancoController(getBaseContext()).deleteItem(task.id);
+                                new BancoController(getBaseContext()).deleteItem(String.valueOf(task.id));
                                 LoadList();
                                 Toast.makeText(ctx, "Cliente excluído com sucesso!", Toast.LENGTH_LONG).show();
                             }
