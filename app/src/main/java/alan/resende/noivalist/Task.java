@@ -12,6 +12,7 @@ public class Task implements Serializable {
 
     int id;
     String nome;
+    String categoria;
 
 
     public Task() {

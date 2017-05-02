@@ -13,4 +13,14 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="AcessoBD_onCreate">CREATE TABLE task (ID INTEGER PRIMARY KEY AUTOINCREMENT, Nome TEXT);</string>
     <string name="AcessoBD_onUpgrade">"DROP TABLE IF EXISTS task</string>
+
+    <string-array name="categoria_array">
+        <item>Arranjos</item>
+        <item>Buffet</item>
+        <item>Cerimonialista</item>
+        <item>Decoração</item>
+        <item>Vestido</item>
+        <item>Adicionar nova categoria</item>
+
+    </string-array>
 </resources>
