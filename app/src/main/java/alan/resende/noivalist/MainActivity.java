@@ -14,6 +14,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.facebook.stetho.Stetho;
+import com.github.clans.fab.FloatingActionMenu;
+
 import java.util.ArrayList;
 import static android.R.layout.simple_list_item_1;
 
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Stetho.initializeWithDefaults(this);
         setContentView(R.layout.activity_main);
 
         final ListView listview = (ListView) findViewById(R.id.lista);
@@ -35,15 +39,53 @@ public class MainActivity extends AppCompatActivity {
             listview.setAdapter((ListAdapter) adapter);
         onRestart();
 
-        //Instância do floatbutton
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionMenu fabMenu = (FloatingActionMenu) findViewById(R.id.menuFab);
+        fabMenu.setOnMenuToggleListener(new FloatingActionMenu.OnMenuToggleListener() {
             @Override
-            public void onClick(View view) {
+            public void onMenuToggle(boolean b) {
+                Toast.makeText(getBaseContext(), "asdsa" + (b ? "true" : "false"), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        com.github.clans.fab.FloatingActionButton fab1 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab1);
+        com.github.clans.fab.FloatingActionButton fab2 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab2);
+        com.github.clans.fab.FloatingActionButton fab3 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab3);
+
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "Fab1", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddCategoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        fab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, TaskActivity.class);
                 startActivity(intent);
             }
         });
+
+//        //Instância do floatbutton
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(MainActivity.this, TaskActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

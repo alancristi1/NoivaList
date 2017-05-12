@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TaskActivity"></activity>
+        <activity android:name=".TaskActivity" />
         <activity android:name=".AlterActivity" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -34,6 +34,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddCategoryActivity"
+            android:label="@string/title_activity_add_category"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".NewImplementationActivity" />
     </application>
 
 </manifest>

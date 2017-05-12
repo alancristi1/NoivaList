@@ -45,10 +45,6 @@ public class BancoController {
     }
 
     public ArrayList<Task> getAllItens(){
-        return getAllItens(null);
-    }
-
-    public ArrayList<Task> getAllItens(String nomeB){
         SQLiteDatabase db = acessoBD.getReadableDatabase();
         String sql = "SELECT id,nome FROM task";
 
@@ -70,6 +66,38 @@ public class BancoController {
         return tasks;
     }
 
+    public ArrayList<Task> getAllCategory(){
+        SQLiteDatabase db = acessoBD.getReadableDatabase();
+        String sql = "SELECT nome FROM category ORDER BY nome DESC";
+        ArrayList<Task> taskCategoria = new ArrayList<>();
+        Cursor cursor;
+
+        cursor = db.rawQuery(sql, null);
+        if(cursor != null && cursor.moveToFirst()){
+            taskCategoria = new ArrayList<Task>();
+
+            do {
+                String categoria = cursor.getString(0);
+                Task task = new Task(categoria);
+                taskCategoria.add(task);
+            }while (cursor.moveToNext());
+        }
+        db.close();
+        return taskCategoria;
+    }
+
+    public void addCategory(String nameCategory){
+        SQLiteDatabase db = acessoBD.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("categoria", nameCategory);
+        db.insert("task ", null, values);
+        db.close();
+    }
+    public int deleteCategory(String id){
+        SQLiteDatabase db = acessoBD.getWritableDatabase();
+//        return db.delete("task", "ID=?", new String[] {id});
+        return db.delete("task", "ID=?", new String[] {id});
+    }
     public void alterItem(String nome, int id){
         SQLiteDatabase db = acessoBD.getWritableDatabase();
         ContentValues values = new ContentValues();

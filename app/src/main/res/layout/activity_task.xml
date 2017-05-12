@@ -11,27 +11,29 @@
     tools:context="alan.resende.noivalist.TaskActivity">
 
     <Button
-        android:text="@string/salvar"
+        android:id="@+id/btn_task"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_task"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
+        android:text="@string/salvar"
+        android:textStyle="bold" />
 
 
     <EditText
+        android:id="@+id/inputTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="@string/adicione_a_sua_tarefa"
-        android:ems="10"
-        android:id="@+id/inputTask"
-        android:textAlignment="center"
-        tools:ignore="LabelFor"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="98dp" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="98dp"
+        android:ems="10"
+        android:hint="@string/adicione_a_sua_tarefa"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        tools:ignore="LabelFor" />
 
     <Spinner
         android:id="@+id/spinner"

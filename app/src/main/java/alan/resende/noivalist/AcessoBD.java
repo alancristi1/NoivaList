@@ -17,7 +17,12 @@ import android.database.sqlite.SQLiteOpenHelper;
             "CREATE TABLE task("+
                     "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
                     "nome TEXT"+
-                    "categoria TEXT"+
+                    ");";
+
+    private  static String TABLE_CATEGORY =
+            "CREATE TABLE category("+
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+                    "nome TEXT"+
                     ");";
 
 
@@ -28,10 +33,15 @@ import android.database.sqlite.SQLiteOpenHelper;
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_ITENS);
-
+        db.execSQL(TABLE_CATEGORY);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+//        if(newVersion > oldVersion) {
+//            db.execSQL("ALTER TABLE task ADD COLUMN categoria TEXT");
+//            db.close();
+//        }
 
     }
 }
