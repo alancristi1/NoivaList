@@ -14,11 +14,6 @@ public class Task implements Serializable {
     String nome;
     String categoria;
 
-
-    public Task() {
-
-    }
-
     public Task(String nome) {
         this(0, nome);
     }

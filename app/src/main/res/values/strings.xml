@@ -23,5 +23,6 @@
         <item>Adicionar nova categoria</item>
 
     </string-array>
+
     <string name="title_activity_add_category">AddCategoryActivity</string>
 </resources>

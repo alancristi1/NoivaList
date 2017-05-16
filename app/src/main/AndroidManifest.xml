@@ -39,6 +39,7 @@
             android:label="@string/title_activity_add_category"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NewImplementationActivity" />
+        <activity android:name=".ListCategoryActivity"></activity>
     </application>
 
 </manifest>

@@ -4,13 +4,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,6 +16,7 @@ import com.facebook.stetho.Stetho;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
+
 import static android.R.layout.simple_list_item_1;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,13 +29,13 @@ public class MainActivity extends AppCompatActivity {
 
         final ListView listview = (ListView) findViewById(R.id.lista);
 
-        ArrayList<Task> itens = null;
+        ArrayList<Task> itens;
         BancoController controller = new BancoController(this);
 
             itens = controller.getAllItens();
-            ArrayAdapter<Task> adapter = new ArrayAdapter<Task>(this, simple_list_item_1,itens);
+            ArrayAdapter<Task> adapter = new ArrayAdapter<>(this, simple_list_item_1,itens);
             final ListView listView = (ListView) findViewById(R.id.lista);
-            listview.setAdapter((ListAdapter) adapter);
+            listView.setAdapter(adapter);
         onRestart();
 
         FloatingActionMenu fabMenu = (FloatingActionMenu) findViewById(R.id.menuFab);
@@ -47,45 +46,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        fabMenu.setClosedOnTouchOutside(true);
         com.github.clans.fab.FloatingActionButton fab1 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab1);
         com.github.clans.fab.FloatingActionButton fab2 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab2);
-        com.github.clans.fab.FloatingActionButton fab3 = (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fab3);
 
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "Fab1", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, ListCategoryActivity.class);
+                startActivity(intent);
             }
         });
 
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddCategoryActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        fab3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, TaskActivity.class);
                 startActivity(intent);
             }
         });
-
-//        //Instância do floatbutton
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(MainActivity.this, TaskActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -123,16 +102,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void LoadList(){
-        ArrayList<Task> itens = null;
+        ArrayList<Task> itens;
         BancoController controller = new BancoController(this);
         itens = controller.getAllItens();
-        ArrayAdapter<Task> adapter = new ArrayAdapter<Task>(this, simple_list_item_1, itens);
+        ArrayAdapter<Task> adapter = new ArrayAdapter<>(this, simple_list_item_1, itens);
         ListView listView = (ListView) findViewById(R.id.lista);
-        listView.setAdapter((ListAdapter) adapter);
+        FloatingActionMenu fabMenu = (FloatingActionMenu) findViewById(R.id.menuFab);
+        fabMenu.close(true);
+        listView.setAdapter(adapter);
     }
     @Override
     protected void onRestart(){
         super.onRestart();
         LoadList();
+
     }
 }

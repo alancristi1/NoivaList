@@ -2,13 +2,10 @@ package alan.resende.noivalist;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.view.View;
 import android.widget.AdapterView;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.ArrayList;
 
 
@@ -53,7 +50,7 @@ public class BancoController {
 
         cursor = db.rawQuery(sql, null);
         if(cursor != null && cursor.moveToFirst()){
-            tasks = new ArrayList<Task>();
+            tasks = new ArrayList<>();
 
             do {
                 int id = cursor.getInt(0);
@@ -74,7 +71,7 @@ public class BancoController {
 
         cursor = db.rawQuery(sql, null);
         if(cursor != null && cursor.moveToFirst()){
-            taskCategoria = new ArrayList<Task>();
+            taskCategoria = new ArrayList<>();
 
             do {
                 String categoria = cursor.getString(0);
@@ -89,8 +86,8 @@ public class BancoController {
     public void addCategory(String nameCategory){
         SQLiteDatabase db = acessoBD.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("categoria", nameCategory);
-        db.insert("task ", null, values);
+        values.put("nome", nameCategory);
+        db.insert("category ", null, values);
         db.close();
     }
     public int deleteCategory(String id){
