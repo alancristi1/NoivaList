@@ -18,7 +18,6 @@ public class ListCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_category);
 
-        ListView listviewCategory = new ListView(this);
         com.github.clans.fab.FloatingActionButton fabCategory =
                 (com.github.clans.fab.FloatingActionButton) findViewById(R.id.fabCategory);
 
@@ -30,11 +29,12 @@ public class ListCategoryActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList<Task> itens;
+        ListView listView = (ListView) findViewById(R.id.listCategory);
         BancoController controller = new BancoController(this);
-        itens = controller.getAllCategory();
-        ArrayAdapter<Task> adapter = new ArrayAdapter<>(this, simple_list_item_1,itens);
-        listviewCategory.setAdapter(adapter);
+        ArrayList<Category> getCategory;
+        getCategory = controller.getAllCategory();
+        ArrayAdapter<Category> adapter = new ArrayAdapter<>(this, simple_list_item_1, getCategory);
+        listView.setAdapter(adapter);
         onRestart();
     }
 }

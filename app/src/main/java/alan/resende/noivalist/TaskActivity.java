@@ -23,7 +23,7 @@ public class TaskActivity extends AppCompatActivity implements AdapterView.OnIte
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
 
         BancoController controller = new BancoController(this);
-        ArrayList<Task> getCategory = controller.getAllCategory();
+        ArrayList<Category> getCategory = controller.getAllCategory();
         ArrayAdapter adapterSpinner = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, getCategory);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterSpinner);

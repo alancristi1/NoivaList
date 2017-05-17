@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 
 import java.util.ArrayList;
 
+import static android.R.attr.id;
+
 
 /**
  * Created by alan on 28/10/16.
@@ -63,10 +65,30 @@ public class BancoController {
         return tasks;
     }
 
-    public ArrayList<Task> getAllCategory(){
+//    public ArrayList<Task> getAllCategory(){
+//        SQLiteDatabase db = acessoBD.getReadableDatabase();
+//        String sql = "SELECT nome FROM category ORDER BY nome DESC";
+//        ArrayList<Task> taskCategoria = new ArrayList<>();
+//        Cursor cursor;
+//
+//        cursor = db.rawQuery(sql, null);
+//        if(cursor != null && cursor.moveToFirst()){
+//            taskCategoria = new ArrayList<>();
+//
+//            do {
+//                String categoria = cursor.getString(0);
+//                Task task = new Task(categoria);
+//                taskCategoria.add(task);
+//            }while (cursor.moveToNext());
+//        }
+//        db.close();
+//        return taskCategoria;
+//    }
+
+    public ArrayList<Category> getAllCategory(){
         SQLiteDatabase db = acessoBD.getReadableDatabase();
         String sql = "SELECT nome FROM category ORDER BY nome DESC";
-        ArrayList<Task> taskCategoria = new ArrayList<>();
+        ArrayList<Category> taskCategoria = new ArrayList<>();
         Cursor cursor;
 
         cursor = db.rawQuery(sql, null);
@@ -74,9 +96,9 @@ public class BancoController {
             taskCategoria = new ArrayList<>();
 
             do {
-                String categoria = cursor.getString(0);
-                Task task = new Task(categoria);
-                taskCategoria.add(task);
+                String nome = cursor.getString(0);
+                Category category = new Category(nome);
+                taskCategoria.add(category);
             }while (cursor.moveToNext());
         }
         db.close();
