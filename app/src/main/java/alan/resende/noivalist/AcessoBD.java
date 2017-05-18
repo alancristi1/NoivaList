@@ -11,12 +11,13 @@ import android.database.sqlite.SQLiteOpenHelper;
     public class AcessoBD extends SQLiteOpenHelper {
 
     private static final String NOME_BANCO = "noivalist";
-    private static final int VERSAO = 2;
+    private static final int VERSAO = 3;
 
     private static String TABLE_ITENS =
             "CREATE TABLE task("+
                     "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
-                    "nome TEXT"+
+                    "nome TEXT,"+
+                    "categoria TEXT"+
                     ");";
 
     private  static String TABLE_CATEGORY =

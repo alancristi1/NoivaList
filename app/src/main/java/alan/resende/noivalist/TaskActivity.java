@@ -28,24 +28,22 @@ public class TaskActivity extends AppCompatActivity implements AdapterView.OnIte
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterSpinner);
 
+        final String valueSpinner = spinner.getSelectedItem().toString();
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 inputTask[0] = (EditText)findViewById(R.id.inputTask);
                 BancoController controller = new BancoController(getBaseContext());
-                System.out.println(inputTask[0]);
-                controller.addItem(inputTask[0].getText().toString());
+                controller.addItem(inputTask[0].getText().toString(), valueSpinner);
                 finish();
             }
         });
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        System.out.println("Selecionado " + pos);
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 }
