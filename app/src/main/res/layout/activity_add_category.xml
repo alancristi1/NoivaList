@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="alan.resende.noivalist.AddCategoryActivity">
+    tools:context="alan.resende.noivalist.controller.AddCategoryActivity">
 
     <EditText
         android:id="@+id/txtNameCategory"

@@ -1,35 +1,29 @@
-package alan.resende.noivalist;
+package alan.resende.noivalist.model;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.AdapterView;
 import java.util.ArrayList;
 
 /**
  * Created by alan on 28/10/16.
  */
 
-public class BancoController {
+public class Util {
 
-    private Context ctx;
+    public static DatabaseHandler handler = null;
 
-    public BancoController(AdapterView.OnItemLongClickListener onItemLongClickListener) {
-    }
-
-    public static AcessoBD acessoBD = null;
-
-    public BancoController(Context context){
-        if(acessoBD == null){
-            acessoBD = new AcessoBD(context);
+    public Util(Context context){
+        if(handler == null){
+            handler = new DatabaseHandler(context);
         }
     }
 
     /*Method relation for Task*/
 
     public void addItem(String nome, String categoria){
-        SQLiteDatabase db = acessoBD.getWritableDatabase();
+        SQLiteDatabase db = handler.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("nome", nome);
         values.put("categoria", categoria);
@@ -37,13 +31,13 @@ public class BancoController {
         db.close();
     }
 
-    public int deleteItem(String id){
-        SQLiteDatabase db = acessoBD.getWritableDatabase();
-        return db.delete("task", "ID=?", new String[] {id});
+    public int deleteItem(int id){
+        SQLiteDatabase db = handler.getWritableDatabase();
+        return db.delete("task", "ID=?", new String[] {String.valueOf(id)});
     }
 
     public ArrayList<Task> getAllItens(){
-        SQLiteDatabase db = acessoBD.getReadableDatabase();
+        SQLiteDatabase db = handler.getReadableDatabase();
         String sql = "SELECT id,nome FROM task";
 
         ArrayList<Task> tasks = new ArrayList<>();
@@ -65,7 +59,7 @@ public class BancoController {
     }
 
     public void alterItem(String nome, int id){
-        SQLiteDatabase db = acessoBD.getWritableDatabase();
+        SQLiteDatabase db = handler.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("", nome);
         //  db.update("task",  values, nome, );
@@ -74,7 +68,7 @@ public class BancoController {
     /*Method relation for Category*/
 
     public void addCategory(String nameCategory){
-        SQLiteDatabase db = acessoBD.getWritableDatabase();
+        SQLiteDatabase db = handler.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("nome", nameCategory);
         db.insert("category ", null, values);
@@ -82,29 +76,26 @@ public class BancoController {
     }
 
     public ArrayList<Category> getAllCategory(){
-        SQLiteDatabase db = acessoBD.getReadableDatabase();
-        String sql = "SELECT nome FROM category ORDER BY nome DESC";
+        SQLiteDatabase db = handler.getReadableDatabase();
+//        String sql = "SELECT nome FROM category ORDER BY nome DESC";
+        String sql = "SELECT nome FROM category";
         ArrayList<Category> taskCategoria = new ArrayList<>();
         Cursor cursor;
 
         cursor = db.rawQuery(sql, null);
         if(cursor != null && cursor.moveToFirst()){
             taskCategoria = new ArrayList<>();
-
             do {
                 String nome = cursor.getString(0);
-                Category category = new Category(nome);
+                Category category = new Category(0, nome);
                 taskCategoria.add(category);
             }while (cursor.moveToNext());
         }
         db.close();
         return taskCategoria;
     }
-
-    public int deleteCategory(String id){
-        SQLiteDatabase db = acessoBD.getWritableDatabase();
-//        return db.delete("task", "ID=?", new String[] {id});
-        return db.delete("task", "ID=?", new String[] {id});
+    public int deleteCategory(int id){
+        SQLiteDatabase db = handler.getWritableDatabase();
+        return db.delete("category", "ID=?", new String[] {String.valueOf(id)});
     }
-
 }

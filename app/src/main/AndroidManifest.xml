@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".SplashActivity"
+            android:name=".controller.SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,8 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TaskActivity" />
-        <activity android:name=".AlterActivity" />
+        <activity android:name=".controller.TaskActivity" />
+        <activity android:name=".controller.AlterActivity" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -27,7 +27,7 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,11 +35,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddCategoryActivity"
+            android:name=".controller.AddCategoryActivity"
             android:label="@string/title_activity_add_category"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".NewImplementationActivity" />
-        <activity android:name=".ListCategoryActivity"></activity>
+        <activity android:name=".controller.ListCategoryActivity"></activity>
     </application>
 
 </manifest>

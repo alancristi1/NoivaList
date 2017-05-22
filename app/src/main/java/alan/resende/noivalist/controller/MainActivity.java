@@ -1,4 +1,4 @@
-package alan.resende.noivalist;
+package alan.resende.noivalist.controller;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,6 +17,10 @@ import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
 
+import alan.resende.noivalist.R;
+import alan.resende.noivalist.model.Task;
+import alan.resende.noivalist.model.Util;
+
 import static android.R.layout.simple_list_item_1;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,19 +34,18 @@ public class MainActivity extends AppCompatActivity {
         final ListView listview = (ListView) findViewById(R.id.lista);
 
         ArrayList<Task> itens;
-        BancoController controller = new BancoController(this);
+        final Util util = new Util(this);
 
-            itens = controller.getAllItens();
+            itens = util.getAllItens();
             ArrayAdapter<Task> adapter = new ArrayAdapter<>(this, simple_list_item_1,itens);
-            final ListView listView = (ListView) findViewById(R.id.lista);
-            listView.setAdapter(adapter);
+            listview.setAdapter(adapter);
         onRestart();
 
         FloatingActionMenu fabMenu = (FloatingActionMenu) findViewById(R.id.menuFab);
         fabMenu.setOnMenuToggleListener(new FloatingActionMenu.OnMenuToggleListener() {
             @Override
             public void onMenuToggle(boolean b) {
-                Toast.makeText(getBaseContext(), "asdsa" + (b ? "true" : "false"), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getBaseContext(), "asdsa" + (b ? "true" : "false"), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -67,12 +70,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//      Functions for this list
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Context ctx = view.getContext();
-                Task task = (Task)listView.getItemAtPosition(position);
-                new BancoController(getBaseContext()).alterItem("", task.id);
+                Task task = (Task)listview.getItemAtPosition(position);
+                new Util(getBaseContext()).alterItem("", task.id);
                 LoadList();
                 Toast.makeText(ctx, "Tarefa alterada com sucesso", Toast.LENGTH_LONG).show();
             }
@@ -82,14 +86,14 @@ public class MainActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, final long id) {
                 final Context ctx = view.getContext();
                 final Task task = (Task)listview.getItemAtPosition(position);
-
+                System.out.println("Saida " + task.id);
                 AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
                 builder.setTitle("Confirmação")
                         .setMessage("Tem certeza que deseja excluir este cliente?")
                         .setPositiveButton("Excluir", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                new BancoController(getBaseContext()).deleteItem(String.valueOf(task.id));
+                                new Util(getBaseContext()).deleteItem(task.id);
                                 LoadList();
                                 Toast.makeText(ctx, "Cliente excluído com sucesso!", Toast.LENGTH_LONG).show();
                             }
@@ -104,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void LoadList(){
         ArrayList<Task> itens;
-        BancoController controller = new BancoController(this);
-        itens = controller.getAllItens();
+        Util util = new Util(this);
+        itens = util.getAllItens();
         ArrayAdapter<Task> adapter = new ArrayAdapter<>(this, simple_list_item_1, itens);
         ListView listView = (ListView) findViewById(R.id.lista);
         FloatingActionMenu fabMenu = (FloatingActionMenu) findViewById(R.id.menuFab);

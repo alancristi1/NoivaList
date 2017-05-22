@@ -1,4 +1,4 @@
-package alan.resende.noivalist;
+package alan.resende.noivalist.model;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by alan on 21/10/16.
  */
 
-    public class AcessoBD extends SQLiteOpenHelper {
+    public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String NOME_BANCO = "noivalist";
     private static final int VERSAO = 3;
@@ -27,7 +27,7 @@ import android.database.sqlite.SQLiteOpenHelper;
                     ");";
 
 
-    public AcessoBD(Context context){
+    public DatabaseHandler(Context context){
         super(context, NOME_BANCO, null, VERSAO);
     }
 

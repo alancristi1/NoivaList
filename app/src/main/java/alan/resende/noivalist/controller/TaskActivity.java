@@ -1,4 +1,4 @@
-package alan.resende.noivalist;
+package alan.resende.noivalist.controller;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,10 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
+import alan.resende.noivalist.R;
+import alan.resende.noivalist.model.Category;
+import alan.resende.noivalist.model.Util;
+
 public class TaskActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     @Override
@@ -22,8 +26,8 @@ public class TaskActivity extends AppCompatActivity implements AdapterView.OnIte
         Button btn = (Button)findViewById(R.id.btn_task);
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
 
-        BancoController controller = new BancoController(this);
-        ArrayList<Category> getCategory = controller.getAllCategory();
+        Util util = new Util(this);
+        ArrayList<Category> getCategory = util.getAllCategory();
         ArrayAdapter adapterSpinner = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, getCategory);
         adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterSpinner);
@@ -33,8 +37,8 @@ public class TaskActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View view) {
                 inputTask[0] = (EditText)findViewById(R.id.inputTask);
-                BancoController controller = new BancoController(getBaseContext());
-                controller.addItem(inputTask[0].getText().toString(), valueSpinner);
+                Util util = new Util(getBaseContext());
+                util.addItem(inputTask[0].getText().toString(), valueSpinner);
                 finish();
             }
         });

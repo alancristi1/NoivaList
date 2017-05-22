@@ -5,7 +5,7 @@
     android:id="@+id/activity_splash"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context="alan.resende.noivalist.SplashActivity"
+    tools:context="alan.resende.noivalist.controller.SplashActivity"
     android:background="@drawable/gradient_background">
 
     <ImageView

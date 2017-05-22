@@ -1,10 +1,13 @@
-package alan.resende.noivalist;
+package alan.resende.noivalist.controller;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import alan.resende.noivalist.R;
+import alan.resende.noivalist.model.Util;
 
 public class AddCategoryActivity extends AppCompatActivity {
 
@@ -19,8 +22,8 @@ public class AddCategoryActivity extends AppCompatActivity {
         btnSaveCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BancoController controller = new BancoController(getBaseContext());
-                controller.addCategory(txtNameCategory.getText().toString());
+                Util util = new Util(getBaseContext());
+                util.addCategory(txtNameCategory.getText().toString());
                 finish();
             }
         });

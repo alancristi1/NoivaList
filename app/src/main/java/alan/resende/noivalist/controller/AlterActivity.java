@@ -1,10 +1,13 @@
-package alan.resende.noivalist;
+package alan.resende.noivalist.controller;
 
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+
+import alan.resende.noivalist.R;
+import alan.resende.noivalist.model.DatabaseHandler;
 
 /**
  * Created by alan on 21/10/16.
@@ -13,7 +16,7 @@ import android.widget.EditText;
 public class AlterActivity extends Activity {
 
     EditText task;
-    AcessoBD db;
+    DatabaseHandler db;
     String nome;
     Button alterar;
     Button deletar;
