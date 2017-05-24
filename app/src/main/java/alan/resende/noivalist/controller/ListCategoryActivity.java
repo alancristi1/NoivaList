@@ -52,28 +52,28 @@ public class ListCategoryActivity extends AppCompatActivity {
         final Util util = new Util(this);
         final ArrayList<Category> getCategory;
         getCategory = util.getAllCategory();
-        ArrayAdapter<Category> adapter = new ArrayAdapter<>(this, simple_list_item_1, getCategory);
+        final ArrayAdapter<Category> adapter = new ArrayAdapter<>(this, simple_list_item_1, getCategory);
         listview.setAdapter(adapter);
         onRestart();
 
         //      Functions for this list
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Context ctx = view.getContext();
-                Category category = (Category) listview.getItemAtPosition(position);
-                new Util(getBaseContext()).alterItem("", category.id);
-                LoadList();
-                Toast.makeText(ctx, "Tarefa alterada com sucesso", Toast.LENGTH_LONG).show();
-            }
-        });
+//        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+//                Context ctx = view.getContext();
+//                Category category = (Category) listview.getItemAtPosition(position);
+//                new Util(getBaseContext()).alterItem("", category.id);
+//                LoadList();
+//                Toast.makeText(ctx, "Tarefa alterada com sucesso", Toast.LENGTH_LONG).show();
+//            }
+//        });
 
         listview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, final long id) {
+            public boolean onItemLongClick(final AdapterView<?> parent, View view, final int position, final long id) {
                 final Context ctx = view.getContext();
                 final Category category = (Category)listview.getItemAtPosition(position);
-//                System.out.println("Saida " + );
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
                 builder.setTitle("Confirmação")
                         .setMessage("Tem certeza que deseja excluir este cliente?")
@@ -82,8 +82,6 @@ public class ListCategoryActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 new Util(getBaseContext()).deleteCategory(category.id);
-
-                                System.out.println("Saida " + category.id);
                                 LoadList();
                                 Toast.makeText(ctx, "Cliente excluído com sucesso!", Toast.LENGTH_LONG).show();
                             }

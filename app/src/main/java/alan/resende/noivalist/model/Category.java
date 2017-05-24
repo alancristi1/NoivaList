@@ -20,4 +20,8 @@ public class Category implements Serializable {
     public String toString() {
         return this.nome;
     }
+
+    public int getId() {
+        return id;
+    }
 }

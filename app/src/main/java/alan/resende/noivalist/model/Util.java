@@ -77,23 +77,26 @@ public class Util {
 
     public ArrayList<Category> getAllCategory(){
         SQLiteDatabase db = handler.getReadableDatabase();
-//        String sql = "SELECT nome FROM category ORDER BY nome DESC";
-        String sql = "SELECT nome FROM category";
-        ArrayList<Category> taskCategoria = new ArrayList<>();
+        String sql = "SELECT id,nome FROM category";
+
+        ArrayList<Category> Arraycategory = new ArrayList<>();
         Cursor cursor;
 
         cursor = db.rawQuery(sql, null);
         if(cursor != null && cursor.moveToFirst()){
-            taskCategoria = new ArrayList<>();
+            Arraycategory = new ArrayList<>();
+
             do {
-                String nome = cursor.getString(0);
-                Category category = new Category(0, nome);
-                taskCategoria.add(category);
+                int id = cursor.getInt(0);
+                String nome = cursor.getString(1);
+                Category category = new Category(id, nome);
+                Arraycategory.add(category);
             }while (cursor.moveToNext());
         }
         db.close();
-        return taskCategoria;
+        return Arraycategory;
     }
+
     public int deleteCategory(int id){
         SQLiteDatabase db = handler.getWritableDatabase();
         return db.delete("category", "ID=?", new String[] {String.valueOf(id)});
